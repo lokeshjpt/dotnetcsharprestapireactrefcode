@@ -1,0 +1,397 @@
+@import './variables.css';
+
+/* ---- Reset ---- */
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: var(--font-family);
+  font-size: var(--font-size-base);
+  color: var(--text-primary);
+  background: #f4f4f4;
+}
+
+a {
+  color: var(--link-color);
+  text-decoration: none;
+}
+a:hover { text-decoration: underline; }
+
+/* Links within body text must be distinguishable without color (WCAG 1.4.1) */
+p a { text-decoration: underline; }
+
+/* ---- Shared form utilities (Maps Tracker) ---- */
+.form-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-md);
+}
+
+/* Two-column form layout (two fields side by side per row), matching the
+   legacy app_proj_info.jsp look. Each direct child is a grid cell; add
+   .span-2 to a child to make it span the full width. */
+.form-grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: var(--spacing-lg);
+}
+.form-grid-2 > .span-2 {
+  grid-column: 1 / -1;
+}
+@media (max-width: 720px) {
+  .form-grid-2 {
+    grid-template-columns: 1fr;
+  }
+}
+
+.form-control-static {
+  display: inline-block;
+  padding-top: 6px;
+  font-weight: 600;
+  color: var(--label-color);
+}
+
+.location-readback {
+  padding: 10px 12px;
+  background: var(--input-disabled-bg, #eef2f6);
+  border: 1px solid var(--color-border, #cfd8e3);
+  border-radius: var(--border-radius, 4px);
+}
+
+.form-label {
+  min-width: 160px;
+  font-size: var(--label-font-size);
+  font-weight: 600;
+  color: var(--label-color);
+  padding-top: 6px;
+  flex-shrink: 0;
+}
+
+.mandatory { color: var(--mandatory-red); }
+.form-label .mandatory { margin-left: 2px; }
+/* On dark table headers the required asterisk inherits the (white) header color for legibility. */
+.data-table th .mandatory { color: inherit; }
+
+.form-control {
+  width: 100%;
+  padding: 5px 8px;
+  border: 1px solid var(--input-border);
+  border-radius: var(--border-radius);
+  font-family: var(--font-family);
+  font-size: var(--font-size-base);
+  color: var(--text-primary);
+  background: #fff;
+  transition: border-color 0.15s;
+}
+.form-control:focus {
+  outline: none;
+  border-color: var(--input-focus-border);
+  box-shadow: 0 0 0 2px rgba(102, 175, 233, 0.3);
+}
+.form-control:disabled,
+.form-control[disabled] {
+  background: var(--input-disabled-bg);
+  cursor: not-allowed;
+  opacity: 1;
+}
+.form-control.is-invalid { border-color: var(--mandatory-red); }
+
+.form-col { flex: 1; min-width: 0; }
+.form-col-fixed-sm { width: 100px; flex-shrink: 0; }
+.form-col-fixed-md { width: 180px; flex-shrink: 0; }
+
+.upper-case { text-transform: uppercase; }
+
+.field-error {
+  color: var(--mandatory-red);
+  font-size: 12px;
+  margin-top: 3px;
+  display: block;
+}
+
+/* ---- Accessibility helpers ---- */
+.sr-only {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Visible keyboard focus indicator (WCAG 2.4.7) */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+[tabindex]:focus-visible {
+  outline: 3px solid var(--focus-ring, #1a6fbf);
+  outline-offset: 2px;
+}
+
+/* Skip-to-content link (WCAG 2.4.1) */
+.skip-link {
+  position: absolute;
+  left: -999px;
+  top: 0;
+  z-index: 1000;
+  background: #22507a;
+  color: #fff;
+  padding: 10px 16px;
+  border-radius: 0 0 4px 0;
+  font-weight: 600;
+  text-decoration: none;
+}
+.skip-link:focus {
+  left: 0;
+}
+
+/* ---- Buttons ---- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  font-family: var(--font-family);
+  font-size: var(--font-size-base);
+  font-weight: 600;
+  border-radius: var(--border-radius);
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+  white-space: nowrap;
+}
+.btn:disabled { opacity: 0.65; cursor: not-allowed; }
+
+.btn-primary {
+  background: var(--btn-primary-bg);
+  border-color: var(--btn-primary-border);
+  color: #fff;
+}
+.btn-primary:hover:not(:disabled) { background: var(--btn-primary-hover); }
+
+.btn-danger {
+  background: var(--btn-danger-bg);
+  border-color: var(--btn-danger-bg);
+  color: #fff;
+}
+.btn-danger:hover:not(:disabled) { background: var(--btn-danger-hover); }
+
+.btn-default {
+  background: var(--btn-default-bg);
+  border-color: var(--btn-default-border);
+  color: var(--text-primary);
+}
+.btn-default:hover:not(:disabled) { background: #e8e8e8; }
+
+.btn-link {
+  background: none;
+  border: none;
+  color: var(--link-color);
+  padding: 0;
+  font-size: var(--font-size-base);
+  cursor: pointer;
+  text-decoration: none;
+}
+.btn-link:hover { text-decoration: underline; }
+
+/* ---- Radio groups ---- */
+.radio-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-md);
+  padding-top: 4px;
+}
+.radio-label {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+  font-size: var(--font-size-base);
+}
+.radio-label input[type="radio"] { margin: 0; cursor: pointer; }
+
+/* ---- Tables (shared) ---- */
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--font-size-base);
+}
+.data-table th {
+  background: var(--table-header-bg);
+  color: var(--table-header-color);
+  padding: 8px 10px;
+  text-align: left;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.data-table td {
+  padding: 7px 10px;
+  border-bottom: 1px solid var(--table-border);
+  vertical-align: middle;
+}
+.data-table tr:nth-child(even) td { background: var(--table-stripe-bg); }
+.data-table tr:hover td { background: #e8f0fe; }
+
+/* Sticky column headers — keep table headers visible when the list is taller than the
+   viewport (the page scrolls; the header row pins to the top). Header cells already have an
+   opaque background so scrolled rows pass cleanly underneath. */
+.data-table thead th,
+table.simple-table thead th {
+  position: sticky;
+  top: 0;
+  z-index: 3;
+  box-shadow: inset 0 -1px 0 var(--table-border);
+}
+
+.text-muted { color: var(--text-muted); font-size: 12px; }
+.clearfix::after { content: ''; display: block; clear: both; }
+
+/* ============================================================
+   Legacy ecomm helper classes (retained so existing pages work)
+   ============================================================ */
+.app-shell {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.page-shell {
+  width: min(100%, var(--layout-max));
+  margin: 0 auto;
+  padding: 12px 24px 24px;
+}
+
+.panel {
+  background: var(--color-surface);
+  border: 1px solid rgb(234, 233, 233);
+  border-radius: 2px;
+  box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.05);
+  padding: 20px;
+}
+
+.page-title {
+  margin: 0 0 8px;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.page-subtitle {
+  margin: 0 0 20px;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+}
+
+.page-help-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0 0 16px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--link-color);
+  text-decoration: none;
+}
+
+.page-help-link:hover {
+  text-decoration: underline;
+}
+
+.page-help-link__icon {
+  width: 16px;
+  height: 16px;
+  flex: 0 0 auto;
+}
+
+.grid-two {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.grid-three {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.muted-text { color: var(--text-muted); }
+
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 10px;
+  border-radius: 10px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  background: #eaf1f8;
+  color: var(--color-primary);
+}
+
+.status-pill--approved {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+table.simple-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+table.simple-table th,
+table.simple-table td {
+  padding: 10px;
+  border-bottom: 1px solid var(--table-border);
+  text-align: left;
+  vertical-align: top;
+}
+
+table.simple-table th {
+  background: #edf4fb;
+  font-weight: 700;
+}
+
+.alert {
+  border-radius: var(--border-radius);
+  padding: 12px 14px;
+  margin-bottom: 16px;
+}
+
+.alert-error {
+  background: #fff1f2;
+  color: #8b1a1a;
+  border: 1px solid #fecdd3;
+}
+
+.alert-success {
+  background: #ecfdf5;
+  color: #0e5c2f;
+  border: 1px solid #a7f3d0;
+}
+
+.alert-info {
+  background: #eff6ff;
+  color: #1e3a5f;
+  border: 1px solid #bfdbfe;
+}
+
+.alert-warning {
+  background: #fffbeb;
+  color: #854d0e;
+  border: 1px solid #fde68a;
+}
+
+@media (max-width: 900px) {
+  .grid-two,
+  .grid-three {
+    grid-template-columns: 1fr;
+  }
+  .page-shell { padding: 16px; }
+}

@@ -1,0 +1,51 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PWA.PermitsApi.WebApi", "src\PWA.PermitsApi.WebApi\PWA.PermitsApi.WebApi.csproj", "{0AB0A56A-4D85-46E1-8A28-17E71D3BB5F7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PWA.PermitsApi.Application", "src\PWA.PermitsApi.Application\PWA.PermitsApi.Application.csproj", "{5A4B5A73-55B1-449E-BB9D-9870F0306A82}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PWA.PermitsApi.Domain", "src\PWA.PermitsApi.Domain\PWA.PermitsApi.Domain.csproj", "{D0D36D9D-AF2E-4D08-8FE3-2308F40BF6E1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PWA.PermitsApi.Infrastructure", "src\PWA.PermitsApi.Infrastructure\PWA.PermitsApi.Infrastructure.csproj", "{F84E838F-FB65-4DB9-B71C-7C2A31D1AA14}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PWA.PermitsApi.Persistence", "src\PWA.PermitsApi.Persistence\PWA.PermitsApi.Persistence.csproj", "{C057E1A5-06A2-4DE3-8C93-B657A49C28F1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PWA.PermitsApi.Tests", "tests\PWA.PermitsApi.Tests\PWA.PermitsApi.Tests.csproj", "{E88C789A-42E2-47A8-B2CC-7AAB734381BB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0AB0A56A-4D85-46E1-8A28-17E71D3BB5F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0AB0A56A-4D85-46E1-8A28-17E71D3BB5F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0AB0A56A-4D85-46E1-8A28-17E71D3BB5F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0AB0A56A-4D85-46E1-8A28-17E71D3BB5F7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5A4B5A73-55B1-449E-BB9D-9870F0306A82}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5A4B5A73-55B1-449E-BB9D-9870F0306A82}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5A4B5A73-55B1-449E-BB9D-9870F0306A82}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5A4B5A73-55B1-449E-BB9D-9870F0306A82}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D0D36D9D-AF2E-4D08-8FE3-2308F40BF6E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D0D36D9D-AF2E-4D08-8FE3-2308F40BF6E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D0D36D9D-AF2E-4D08-8FE3-2308F40BF6E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D0D36D9D-AF2E-4D08-8FE3-2308F40BF6E1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F84E838F-FB65-4DB9-B71C-7C2A31D1AA14}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F84E838F-FB65-4DB9-B71C-7C2A31D1AA14}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F84E838F-FB65-4DB9-B71C-7C2A31D1AA14}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F84E838F-FB65-4DB9-B71C-7C2A31D1AA14}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C057E1A5-06A2-4DE3-8C93-B657A49C28F1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C057E1A5-06A2-4DE3-8C93-B657A49C28F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C057E1A5-06A2-4DE3-8C93-B657A49C28F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C057E1A5-06A2-4DE3-8C93-B657A49C28F1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E88C789A-42E2-47A8-B2CC-7AAB734381BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E88C789A-42E2-47A8-B2CC-7AAB734381BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E88C789A-42E2-47A8-B2CC-7AAB734381BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E88C789A-42E2-47A8-B2CC-7AAB734381BB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

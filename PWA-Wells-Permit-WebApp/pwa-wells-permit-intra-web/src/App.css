@@ -1,0 +1,29 @@
+.staff-layout {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+}
+
+.staff-content {
+  flex: 1;
+  background: #f8fafc;
+  overflow: auto;
+  min-width: 0;
+  /* Small breathing gap above the pinned table header (bleed-free: the border moves the
+     scroll clip edge, so the sticky header pins just below this gap). */
+  border-top: 12px solid #f8fafc;
+}
+
+.staff-content__inner {
+  padding: 28px;
+}
+
+@media (max-width: 900px) {
+  .staff-layout {
+    flex-direction: column;
+  }
+
+  .staff-content__inner {
+    padding: 16px;
+  }
+}

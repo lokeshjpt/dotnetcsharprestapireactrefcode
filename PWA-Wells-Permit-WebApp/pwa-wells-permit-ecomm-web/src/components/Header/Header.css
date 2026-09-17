@@ -1,0 +1,54 @@
+.portal-header {
+  background: #22507a;
+  color: #fff;
+  padding: 8px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+
+.portal-header__brand {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.portal-header__logo {
+  height: 34px;
+  width: auto;
+  display: block;
+  background: #fff;
+  border-radius: 4px;
+  padding: 3px;
+}
+
+.portal-header__title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+.portal-header__nav {
+  display: flex;
+  gap: 20px;
+  font-weight: 600;
+}
+
+.portal-header__nav a {
+  color: #fff;
+  padding-bottom: 3px;
+  border-bottom: 2px solid transparent;
+}
+
+.portal-header__nav a.active {
+  border-bottom-color: #fff;
+}
+
+@media (max-width: 900px) {
+  .portal-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "name": "pwa-permits-ecomm",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "@reduxjs/toolkit": "^2.8.2",
+    "axios": "^1.10.0",
+    "lucide-react": "^0.515.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-redux": "^9.2.0",
+    "react-router-dom": "^7.6.2",
+    "react-scripts": "5.0.1"
+  },
+  "scripts": {
+    "start": "set PORT=3000 && react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "build:development": "env-cmd -f .env.development react-scripts build",
+    "build:test": "env-cmd -f .env.test react-scripts build",
+    "build:uat": "env-cmd -f .env.uat react-scripts build",
+    "build:production": "env-cmd -f .env.production react-scripts build",
+    "test:e2e": "playwright test",
+    "test:regression": "node e2e/run.js",
+    "test:e2e:headed": "playwright test --headed",
+    "test:e2e:ui": "playwright test --ui",
+    "test:e2e:report": "playwright show-report",
+    "capture:help": "set CAPTURE=1 && playwright test capture-help.spec.js",
+    "sim:bot": "set SIM_BOT=1&& playwright test bot-challenge.spec.js --headed",
+    "sim:bot:solve": "set SIM_BOT=1&& set BOT_HOLD=1&& playwright test bot-challenge.spec.js --headed --workers=1"
+  },
+  "jest": {
+    "testMatch": [
+      "<rootDir>/src/**/__tests__/**/*.{js,jsx,ts,tsx}",
+      "<rootDir>/src/!(config)/**/*.{spec,test}.{js,jsx,ts,tsx}"
+    ]
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.62.1",
+    "@testing-library/dom": "^10.4.1",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.2",
+    "@testing-library/user-event": "^14.6.3",
+    "env-cmd": "^11.0.0",
+    "jest-axe": "^9.0.0"
+  }
+}

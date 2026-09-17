@@ -1,0 +1,74 @@
+.track-page {
+  padding-top: 36px;
+  padding-bottom: 40px;
+}
+
+/* Align the Search button with the input column (labels are 160px + the form-row gap). */
+.track-page__actions {
+  padding-left: calc(160px + var(--spacing-sm));
+}
+
+@media (max-width: 720px) {
+  .track-page__actions {
+    padding-left: 0;
+  }
+
+  /* Mobile: make the results table a self-contained scroll box that owns both axes. Capping the
+     height turns .track-page__results into the vertical scroll container as well as the horizontal
+     one, so the sticky table header pins to the top of the box while both a horizontal and a
+     vertical scrollbar work at the table level (no page-level horizontal scrollbar). Short result
+     sets keep their natural height. */
+  .track-page__results {
+    max-height: 70vh;
+    max-height: 70dvh;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+.track-page__alert {
+  margin-top: 16px;
+}
+
+.track-page__results {
+  margin-top: 22px;
+}
+
+.track-page__status-cell {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.track-page__status-cell .btn {
+  padding: 4px 10px;
+  font-size: 0.82rem;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+.track-page__sitemap-row td {
+  background: #f8fbff;
+}
+
+.track-page__sitemap-hint {
+  margin: 0 0 10px;
+}
+
+.captcha-notice {
+  margin-top: 0.75rem;
+  font-size: 0.75rem;
+  line-height: 1.4;
+  color: #4b5563;
+  text-align: center;
+}
+
+.captcha-notice a {
+  color: #3f4650;
+  text-decoration: underline;
+}
+
+.captcha-notice a:hover {
+  color: #1f2937;
+}

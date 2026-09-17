@@ -1,0 +1,88 @@
+.env-banner-wrapper {
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+  pointer-events: none;
+}
+
+.env-switcher {
+  position: relative;
+  pointer-events: auto;
+}
+
+.env-banner {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background-color: rgba(200, 0, 0, 0.75);
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  padding: 6px 14px;
+  border: none;
+  border-radius: 0 0 8px 8px;
+  cursor: pointer;
+}
+
+.env-chevron {
+  transition: transform 0.2s ease;
+}
+
+.env-chevron--open {
+  transform: rotate(180deg);
+}
+
+.env-dropdown {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 50%;
+  transform: translateX(-50%);
+  list-style: none;
+  margin: 0;
+  padding: 4px 0;
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+  min-width: 240px;
+  overflow: hidden;
+}
+
+.env-dropdown-item {
+  display: flex;
+  flex-direction: column;
+  padding: 9px 16px;
+  text-decoration: none;
+  color: #333;
+  gap: 2px;
+}
+
+.env-dropdown-item--active {
+  background: #fff0f0;
+  pointer-events: none;
+}
+
+.env-dropdown-label {
+  font-weight: 700;
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  color: #cc0000;
+}
+
+.env-dropdown-url {
+  font-size: 0.72rem;
+  color: #888;
+}
+
+.main-bg {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  background: #f4f4f4;
+}

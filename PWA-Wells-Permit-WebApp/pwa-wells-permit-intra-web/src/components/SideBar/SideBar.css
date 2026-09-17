@@ -1,0 +1,312 @@
+/* ============================================================
+   SideBar.css — Left sidebar navigation (Maps Tracker parity)
+   ============================================================ */
+
+:root {
+  --sidebar-width:           220px;
+  --sidebar-collapsed-width: 52px;
+  --sidebar-bg:              #2c3e50;
+  --sidebar-header-bg:       #243342;
+  --sidebar-text:            #d8dde1;
+  --sidebar-text-hover:      #ffffff;
+  --sidebar-active-bg:       #22507a;
+  --sidebar-active-text:     #ffffff;
+  --sidebar-hover-bg:        rgba(255, 255, 255, 0.08);
+  --sidebar-icon-size:       18px;
+  --sidebar-transition:      0.2s ease;
+}
+
+/* ---- Shell ---- */
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  width: var(--sidebar-width);
+  background: var(--sidebar-bg);
+  transition: width var(--sidebar-transition);
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+.sidebar--collapsed {
+  width: var(--sidebar-collapsed-width);
+}
+
+/* ---- Header ---- */
+.sidebar__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 10px;
+  height: 52px;
+  background: var(--sidebar-header-bg);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  flex-shrink: 0;
+}
+
+.sidebar--collapsed .sidebar__header {
+  justify-content: center;
+}
+
+.sidebar__title {
+  font-family: var(--font-family, Verdana, Arial, sans-serif);
+  font-size: 15px;
+  font-weight: 700;
+  color: #ffffff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ---- Toggle button ---- */
+.sidebar__toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  background: none;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  color: var(--sidebar-text);
+  flex-shrink: 0;
+  transition: background var(--sidebar-transition), color var(--sidebar-transition);
+  padding: 0;
+}
+.sidebar__toggle:hover {
+  background: var(--sidebar-hover-bg);
+  color: var(--sidebar-text-hover);
+}
+.sidebar__toggle svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* ---- Close button (mobile only) ---- */
+.sidebar__close {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  background: none;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  color: var(--sidebar-text);
+  flex-shrink: 0;
+  padding: 0;
+  transition: background var(--sidebar-transition), color var(--sidebar-transition);
+}
+.sidebar__close:hover {
+  background: var(--sidebar-hover-bg);
+  color: var(--sidebar-text-hover);
+}
+.sidebar__close svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* ---- Nav list ---- */
+.sidebar__nav {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 8px 0;
+}
+
+.sidebar__nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.sidebar__nav li + li {
+  margin-top: 2px;
+}
+
+/* ---- Nav item ---- */
+.sidebar__item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 10px 14px;
+  color: var(--sidebar-text);
+  text-decoration: none;
+  font-family: var(--font-family, Verdana, Arial, sans-serif);
+  font-size: 13px;
+  white-space: nowrap;
+  border-left: 3px solid transparent;
+  transition: background var(--sidebar-transition), color var(--sidebar-transition), border-color var(--sidebar-transition);
+}
+.sidebar__item:hover {
+  background: var(--sidebar-hover-bg);
+  color: var(--sidebar-text-hover);
+  text-decoration: none;
+}
+
+/* Active */
+.sidebar__item--active {
+  background: var(--sidebar-active-bg);
+  color: var(--sidebar-active-text);
+  border-left-color: #ffffff;
+}
+.sidebar__item--active:hover {
+  background: var(--sidebar-active-bg);
+  color: var(--sidebar-active-text);
+}
+
+/* ---- Group parent (non-clickable toggle: Processing / Search) ---- */
+button.sidebar__item {
+  width: 100%;
+  background: none;
+  border: none;
+  border-left: 3px solid transparent;
+  font: inherit;
+  font-size: 13px;
+  text-align: left;
+  cursor: pointer;
+}
+
+.sidebar__chevron {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: auto;
+  flex-shrink: 0;
+}
+.sidebar__chevron svg {
+  width: 14px;
+  height: 14px;
+}
+
+.sidebar__group--current {
+  color: var(--sidebar-text-hover);
+}
+.sidebar__group--current .sidebar__label {
+  font-weight: 600;
+}
+
+/* ---- Submenu (child links) ---- */
+.sidebar__submenu {
+  list-style: none;
+  margin: 0;
+  padding: 2px 0;
+  background: rgba(0, 0, 0, 0.16);
+}
+.sidebar__submenu li + li {
+  margin-top: 0;
+}
+
+.sidebar__subitem {
+  display: block;
+  padding: 8px 14px 8px 50px;
+  color: var(--sidebar-text);
+  text-decoration: none;
+  font-family: var(--font-family, Verdana, Arial, sans-serif);
+  font-size: 12.5px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  border-left: 3px solid transparent;
+  transition: background var(--sidebar-transition), color var(--sidebar-transition), border-color var(--sidebar-transition);
+}
+.sidebar__subitem:hover {
+  background: var(--sidebar-hover-bg);
+  color: var(--sidebar-text-hover);
+  text-decoration: none;
+}
+.sidebar__subitem--active {
+  background: var(--sidebar-active-bg);
+  color: var(--sidebar-active-text);
+  border-left-color: #ffffff;
+}
+
+/* ---- Icon ---- */
+.sidebar__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--sidebar-icon-size);
+  height: var(--sidebar-icon-size);
+  flex-shrink: 0;
+}
+.sidebar__icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* ---- Label ---- */
+.sidebar__label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ---- Collapsed: center the icon ---- */
+.sidebar--collapsed .sidebar__item {
+  justify-content: center;
+  padding: 12px 0;
+  border-left: none;
+  border-right: 3px solid transparent;
+}
+.sidebar--collapsed .sidebar__item--active {
+  border-right-color: #ffffff;
+}
+
+/* ---- Scrollbar ---- */
+.sidebar__nav::-webkit-scrollbar { width: 4px; }
+.sidebar__nav::-webkit-scrollbar-track { background: transparent; }
+.sidebar__nav::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.15); border-radius: 2px; }
+
+/* ---- Mobile off-canvas overlay ---- */
+.sidebar__overlay {
+  display: none;
+}
+
+@media (max-width: 900px) {
+  .sidebar__overlay {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity var(--sidebar-transition), visibility var(--sidebar-transition);
+    z-index: 1090;
+  }
+  .sidebar__overlay.is-visible {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  /* Slide-in drawer spanning the full mobile viewport; ignore the desktop collapse width. */
+  .sidebar,
+  .sidebar--collapsed {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 100vw;
+    max-width: 100vw;
+    transform: translateX(-100%);
+    transition: transform var(--sidebar-transition);
+    z-index: 1100;
+    box-shadow: 2px 0 12px rgba(0, 0, 0, 0.3);
+  }
+  .sidebar--mobile-open,
+  .sidebar--collapsed.sidebar--mobile-open {
+    transform: translateX(0);
+  }
+
+  /* On mobile the drawer is always full labels — hide the desktop collapse toggle and show the
+     close (X) button in the top-right of the header. */
+  .sidebar__toggle {
+    display: none;
+  }
+  .sidebar__close {
+    display: flex;
+  }
+  .sidebar--collapsed .sidebar__title {
+    display: inline;
+  }
+}

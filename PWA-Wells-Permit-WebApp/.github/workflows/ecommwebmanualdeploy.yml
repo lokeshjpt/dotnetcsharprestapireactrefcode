@@ -1,0 +1,129 @@
+name: Manual Ecomm Wells Permit WEB UI
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: "Target environment"
+        required: true
+        default: dev
+        type: choice
+        options:
+          - dev
+          - test
+          - uat
+
+jobs:
+  build-and-deploy:
+    runs-on: [self-hosted, Windows, DigitalAppsDotNet]
+
+    env:
+      APP_ENV: ${{ inputs.environment || 'dev' }}
+      APP_NAME: "WellsPermitEcomm"
+
+    strategy:
+      matrix:
+        node-version: [22.x]
+
+    steps:
+
+      - uses: actions/checkout@v4
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+          cache-dependency-path: pwa-wells-permit-ecomm-web/package-lock.json
+
+      - name: Install Packages
+        run: npm install --save --legacy-peer-deps
+        working-directory: pwa-wells-permit-ecomm-web
+
+      - name: Show environment
+        run: echo "Environment is $env:APP_ENV"
+
+      # Maps the short env name (dev/test/uat) to the CRA env-cmd script suffix
+      # and sets REACT_CONFIG for use in the build step.
+      - name: Resolve React config
+        shell: powershell
+        run: |
+          $envName = $env:APP_ENV
+          Write-Host "APP_ENV = $envName"
+
+          switch ($envName) {
+            "dev"  { $config = "development" }
+            "test" { $config = "test" }
+            "uat"  { $config = "production" }
+            "prod" { $config = "production" }
+            default {
+              Write-Error "Unknown environment: $envName"
+              exit 1
+            }
+          }
+
+          "REACT_CONFIG=$config" | Out-File -FilePath $env:GITHUB_ENV -Append
+
+          Write-Host "Resolved React config = $config"
+
+      # Runs: npm run build:development | build:test | build:uat | build:production
+      # Each script calls: env-cmd -f .env.<config> react-scripts build
+      # Output lands in: build/
+      - name: Build React
+        shell: powershell
+        run: |
+          Write-Host "Using REACT_CONFIG = $env:REACT_CONFIG"
+          npm run build:$env:REACT_CONFIG
+        working-directory: pwa-wells-permit-ecomm-web
+        env:
+          CI: false
+
+      # Mirrors the Angular deploy step — robocopy build/ to the same UNC share pattern.
+      # Destination path uses APP_ENV (dev/test/uat) to match the IIS content folders.
+      - name: Deploy to shared drive
+        shell: powershell
+        run: |
+          $source      = "pwa-wells-permit-ecomm-web\build"
+          $destination = "\\user.root.acgov.org\ITD\ITD_IIS_Content_$($env:APP_ENV)_inter\pwawellpermits"
+          Write-Host "Deploying from $source to $destination"
+
+          robocopy $source $destination /MIR /NFL /NDL /NJH /NJS /NP
+
+          $exitCode = $LASTEXITCODE
+          Write-Host "Robocopy exit code: $exitCode"
+
+          if ($exitCode -lt 8) {
+            Write-Host "Robocopy completed successfully"
+            exit 0
+          } else {
+            Write-Error "Robocopy failed with exit code $exitCode"
+            exit $exitCode
+          }
+
+      # Creates an annotated Git tag: v_WellsPermitEcomm-r_<version>-<env>-<run_number>
+      # Requires the push to come from a release branch named r/<version>
+      - name: Create Git tag
+        shell: powershell
+        run: |
+          $ref = $env:GITHUB_REF
+          Write-Host "Git ref: $ref"
+
+          if ($ref -notmatch "refs/heads/r/(.+)") {
+            Write-Error "Not a release branch. Expected r/<version>"
+            exit 1
+          }
+
+          $version = $Matches[1]
+          Write-Host "Release version: $version"
+
+          $envName = "$env:APP_ENV"
+          if (-not $envName) {
+            Write-Error "Environment not provided"
+            exit 1
+          }
+
+          $tagName = "v_${{env.APP_NAME}}-r_$version-$envName-${{ github.run_number }}"
+          Write-Host "Creating tag: $tagName"
+
+          git tag -a $tagName -m "Release $tagName"
+          git push origin $tagName

@@ -1,0 +1,54 @@
+name: Deploy to IIS share
+description: Reusable deployment step
+
+inputs:
+  environment:
+    description: Target environment name
+    required: true
+
+  deploy-path:
+    description: Destination network path
+    required: true
+
+  webapi-file-path:
+    description: Source code path
+    required: true
+
+runs:
+ using: composite
+ steps:
+    - uses: actions/download-artifact@v4
+      with:
+        name: app-mtaapi-publish
+        
+    - name: Deploy Build files to shared drive 
+      shell: powershell
+      run: |
+        $destination = "${{inputs.deploy-path}}"
+        
+        Write-Host "Deploying from publish to $destination"
+    
+        robocopy publish $destination /MIR /NFL /NDL /NJH /NJS /NP
+    
+        $exitCode = $LASTEXITCODE
+        Write-Host "Robocopy exit code: $exitCode"
+    
+        if ($exitCode -lt 8) {
+          Write-Host "Robocopy completed successfully"
+          exit 0
+        } else {
+          Write-Error "Robocopy failed"
+          exit $exitCode
+        }
+    
+        
+    - name: Copy web.ENVIRONMENT.config to web.config
+      shell: powershell
+      run: |
+        Remove-Item "${{inputs.deploy-path}}\web.config" -Force -ErrorAction SilentlyContinue
+        Rename-Item "${{inputs.deploy-path}}\web.${{inputs.environment}}.config" web.config
+        
+    - name: Verify publish output
+      shell: powershell
+      run: |
+         dir ${{inputs.deploy-path}}

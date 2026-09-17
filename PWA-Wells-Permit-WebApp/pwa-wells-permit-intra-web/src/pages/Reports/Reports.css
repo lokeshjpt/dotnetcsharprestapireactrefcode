@@ -1,0 +1,169 @@
+.report-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+}
+
+.report-back {
+  font-size: 0.9rem;
+}
+
+.report-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: end;
+  padding: 16px;
+  background: #f6f9fc;
+  border: 1px solid var(--table-border, #e2e8f0);
+  border-radius: 4px;
+  margin-bottom: 18px;
+}
+
+.report-field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 180px;
+}
+
+.report-field label {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-primary, #1a202c);
+}
+
+.report-field--actions {
+  display: flex;
+  gap: 8px;
+  align-items: end;
+}
+
+.report-summary {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin: 12px 0 18px;
+}
+
+.report-stat {
+  background: #eef4fb;
+  border: 1px solid #d6e4f2;
+  border-radius: 6px;
+  padding: 10px 16px;
+  min-width: 140px;
+}
+
+.report-stat__label {
+  display: block;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-muted, #64748b);
+}
+
+.report-stat__value {
+  display: block;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--text-primary, #1a202c);
+}
+
+.report-group-header td {
+  background: #dde9f5 !important;
+  font-weight: 700;
+}
+
+.report-subtotal td {
+  background: #f0f5fb !important;
+  font-weight: 600;
+}
+
+.report-grandtotal td {
+  background: #cddff0 !important;
+  font-weight: 700;
+  border-top: 2px solid #9db8d4;
+}
+
+.report-num {
+  text-align: right;
+  white-space: nowrap;
+}
+
+/* Extract page: this report is very wide (many columns). To keep a reliable sticky header on both
+   desktop and mobile, the table region does NOT create its own scroll box — the whole content pane
+   scrolls, so the sticky thead pins to the top of that pane as the page scrolls down. Removing the
+   table-level scroll box (a horizontal overflow container also traps the vertical sticky) is what
+   lets the header stay put. The wide table scrolls horizontally with the content pane. */
+.extract-page .table-scroll {
+  overflow: visible;
+  max-height: none;
+}
+
+/* Dashboard queue boxes */
+.queue-boxes {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 14px;
+  margin-top: 16px;
+}
+
+.queue-box {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 16px;
+  border-radius: 8px;
+  border: 1px solid #d6e4f2;
+  background: #fff;
+  text-decoration: none;
+  color: inherit;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.04);
+  transition: transform 0.08s ease, box-shadow 0.08s ease, border-color 0.08s ease;
+}
+
+.queue-box:hover {
+  transform: translateY(-2px);
+  box-shadow: 3px 4px 8px rgba(0, 0, 0, 0.1);
+  border-color: var(--btn-primary-bg, #2b6cb0);
+}
+
+.queue-box__count {
+  font-size: 1.9rem;
+  font-weight: 800;
+  line-height: 1;
+  color: var(--btn-primary-bg, #2b6cb0);
+}
+
+.queue-box__label {
+  font-weight: 600;
+  color: var(--text-primary, #1a202c);
+}
+
+.queue-box__desc {
+  font-size: 0.8rem;
+  color: var(--text-muted, #64748b);
+}
+
+.queue-box--accent .queue-box__count { color: #6b4a12; }
+.queue-box--approved .queue-box__count { color: #0e5c2f; }
+.queue-box--danger .queue-box__count { color: var(--btn-danger-bg, #c53030); }
+
+/* SSRS ReportViewer launcher (reports open in a new tab; the server blocks iframe embedding) */
+.ssrs-launch {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 8px 0;
+}
+
+.ssrs-launch__text {
+  margin: 0;
+  max-width: 640px;
+  color: var(--text-muted, #64748b);
+  line-height: 1.5;
+}

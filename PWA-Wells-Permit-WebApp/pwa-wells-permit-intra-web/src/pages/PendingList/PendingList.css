@@ -1,0 +1,21 @@
+.pending-page__filters {
+  display: grid;
+  grid-template-columns: 1fr 1fr auto;
+  gap: 16px;
+  align-items: end;
+  margin-bottom: 20px;
+}
+
+/* The filter inputs are InputField .form-rows, which carry a bottom margin meant for stacked
+   forms. Inside this grid that margin lifts the inputs off the cell's bottom edge, leaving the
+   Refresh button sitting lower than the fields. Zero it so all three align (the grid gap still
+   spaces the stacked mobile layout). */
+.pending-page__filters .form-row {
+  margin-bottom: 0;
+}
+
+@media (max-width: 900px) {
+  .pending-page__filters {
+    grid-template-columns: 1fr;
+  }
+}

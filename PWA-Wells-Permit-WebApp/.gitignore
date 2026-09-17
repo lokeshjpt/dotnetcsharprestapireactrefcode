@@ -1,0 +1,52 @@
+bin/
+obj/
+.vs/
+TestResults/
+*.user
+*.suo
+*.pfx
+secrets.json
+
+# Serilog rolling log files
+Logs/
+
+node_modules/
+build/
+coverage/
+.DS_Store
+
+# Playwright
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+
+# Local env overrides (CRA convention) — may hold machine-specific values
+.env.*.local
+
+# Logs
+*.log
+npm-debug.log*
+
+node_modules/
+build/
+coverage/
+.DS_Store
+
+# Local env overrides (CRA convention) — may hold machine-specific values.
+# Per-env overrides (.env.development.local, .env.production.local, ...) stay ignored, but the
+# committed local defaults in .env.local are tracked.
+.env.*.local
+!.env.local
+
+# Logs
+*.log
+npm-debug.log*
+
+# Playwright (Help-screenshot capture) — keep the committed public/help/intra PNGs, drop run output
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+# Saved Entra sign-in sessions (bearer tokens) used by the regression runner — never commit
+/e2e/.auth/

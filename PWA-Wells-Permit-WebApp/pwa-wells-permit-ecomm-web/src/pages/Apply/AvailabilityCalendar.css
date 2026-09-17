@@ -1,0 +1,175 @@
+.ac-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.55);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 40px 16px;
+  z-index: 1000;
+  overflow-y: auto;
+}
+
+.ac-modal {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+  width: 100%;
+  max-width: 640px;
+  padding: 18px 20px 22px;
+}
+
+.ac-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #e5e7eb;
+  padding-bottom: 8px;
+  margin-bottom: 10px;
+}
+
+.ac-title {
+  margin: 0;
+  font-size: 1.15rem;
+  color: #1e3a5f;
+}
+
+.ac-close {
+  border: none;
+  background: transparent;
+  font-size: 1.6rem;
+  line-height: 1;
+  cursor: pointer;
+  color: #64748b;
+}
+.ac-close:hover { color: #0f172a; }
+
+.ac-help {
+  font-size: 0.82rem;
+  color: #475569;
+  font-style: italic;
+  margin: 0 0 6px;
+}
+
+.ac-range {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #1e3a5f;
+  margin: 0 0 12px;
+}
+
+.ac-body {
+  display: flex;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+
+.ac-legend {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size: 0.8rem;
+  min-width: 190px;
+  flex: 1 1 190px;
+}
+.ac-legend li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+  color: #334155;
+}
+.ac-swatch {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  border: 1px solid #cbd5e1;
+  border-radius: 3px;
+  flex: 0 0 auto;
+}
+
+.ac-cal {
+  flex: 2 1 300px;
+}
+
+.ac-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+.ac-nav-btn {
+  border: 1px solid #cbd5e1;
+  background: #f8fafc;
+  border-radius: 4px;
+  padding: 2px 12px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+.ac-nav-btn:hover { background: #e2e8f0; }
+.ac-month {
+  font-weight: 700;
+  color: #1e3a5f;
+}
+
+.ac-grid {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+.ac-grid th {
+  font-size: 0.72rem;
+  color: #475569;
+  padding: 4px 0;
+  text-align: center;
+  font-weight: 600;
+}
+.ac-day {
+  height: 34px;
+  text-align: center;
+  vertical-align: middle;
+  border: 1px solid #e5e7eb;
+  font-size: 0.85rem;
+  color: #0f172a;
+  user-select: none;
+}
+.ac-day--empty {
+  border-color: transparent;
+  background: transparent;
+}
+
+/* Legend colors mirror the legacy app_avail_cal.jsp */
+.ac-day--available {
+  background: #fff2a8;
+  color: #1e3a8a;
+  font-weight: 600;
+}
+.ac-day--blocked {
+  background: #ffcccc;
+  color: #4c1d95;
+}
+.ac-day--max {
+  background: #ffcc99;
+  color: #6b0000;
+}
+.ac-day--holiday {
+  background: #f1f5f9;
+  color: #6b4a12;
+}
+.ac-day--outrange {
+  background: #fff;
+  color: #94a3b8;
+}
+.ac-day--pick { cursor: pointer; }
+.ac-day--pick:hover { outline: 2px solid #1d4ed8; outline-offset: -2px; }
+.ac-day--selected {
+  outline: 2px solid #0f766e;
+  outline-offset: -2px;
+  font-weight: 700;
+}
+
+.ac-loading {
+  font-size: 0.78rem;
+  color: #475569;
+  margin-top: 6px;
+}

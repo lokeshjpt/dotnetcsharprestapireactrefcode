@@ -1,0 +1,268 @@
+.haz-shell {
+  background: #eceef1;
+  min-height: 100vh;
+  padding: 28px 16px;
+  font-family: "Segoe UI", Arial, Helvetica, sans-serif;
+  color: #1a1a1a;
+}
+
+.haz-actions {
+  max-width: 820px;
+  margin: 0 auto 18px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.haz-error {
+  color: #8b1a1a;
+  font-weight: 600;
+}
+
+.haz-doc {
+  max-width: 820px;
+  margin: 0 auto;
+  background: #fff;
+  padding: 40px 48px;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.12);
+  border: 1px solid #d9dce1;
+  font-size: 0.85rem;
+}
+
+.haz-head {
+  border-bottom: 2px solid #14304f;
+  padding-bottom: 12px;
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.haz-head-title {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #14304f;
+  margin: 0;
+  letter-spacing: 0.01em;
+}
+
+.haz-subtitle {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #2f4b6b;
+  margin: 2px 0 4px;
+}
+
+.haz-masthead {
+  position: relative;
+  min-height: 70px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  margin-top: -8px;
+}
+
+.haz-logo {
+  position: absolute;
+  left: 0;
+  top: -34px;
+  height: 96px;
+  width: auto;
+}
+
+.haz-office {
+  font-size: 0.8rem;
+  color: #333;
+  line-height: 1.5;
+  margin-top: 10px;
+}
+
+.haz-title {
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  border-top: 1px solid #1a1a1a;
+  border-bottom: 1px solid #1a1a1a;
+  padding: 6px 0;
+  margin: 12px 0 16px;
+}
+
+.haz-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px 24px;
+  margin-bottom: 8px;
+}
+
+.haz-grid .haz-span2 {
+  grid-column: 1 / -1;
+}
+
+.haz-right {
+  text-align: right;
+}
+
+.lbl {
+  font-weight: 700;
+}
+
+.haz-section {
+  margin-top: 16px;
+}
+
+.haz-section h3 {
+  font-size: 0.92rem;
+  font-weight: 700;
+  border-bottom: 1px solid #1a1a1a;
+  padding-bottom: 3px;
+  margin: 0 0 8px;
+}
+
+.haz-empty {
+  color: #4d4d4d;
+  font-style: italic;
+  margin: 4px 0;
+}
+
+.haz-contaminants {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 4px 12px;
+}
+
+.haz-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.82rem;
+}
+
+.haz-table th,
+.haz-table td {
+  border: 1px solid #ccd0d6;
+  padding: 5px 7px;
+  text-align: left;
+  vertical-align: top;
+}
+
+.haz-table th {
+  background: #f0f2f5;
+}
+
+.haz-meeting {
+  display: flex;
+  gap: 28px;
+  margin-top: 10px;
+}
+
+.haz-ppe-row {
+  display: flex;
+  gap: 26px;
+  flex-wrap: wrap;
+}
+
+.haz-ppe {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.haz-box {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  border: 1px solid #1a1a1a;
+  font-size: 0.75rem;
+  line-height: 1;
+  font-weight: 700;
+}
+
+.haz-box--head {
+  border: none;
+  width: auto;
+  margin-right: 10px;
+}
+
+.haz-legend {
+  margin: 0 0 6px;
+  font-size: 0.8rem;
+}
+
+.haz-equip-head {
+  display: flex;
+  gap: 4px;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.haz-equip-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px 24px;
+}
+
+.haz-equip-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.haz-equip-label {
+  white-space: nowrap;
+}
+
+.haz-equip-desc {
+  flex: 1;
+  border-bottom: 1px solid #999;
+  min-height: 16px;
+  min-width: 40px;
+}
+
+.haz-provided {
+  margin-top: 22px;
+}
+
+.haz-provided-row {
+  display: flex;
+  align-items: flex-end;
+  gap: 12px;
+  margin-top: 14px;
+}
+
+.haz-underline {
+  border-bottom: 1px solid #1a1a1a;
+  min-width: 160px;
+  padding: 0 4px 2px;
+  position: relative;
+}
+
+.haz-underline--title {
+  min-width: 220px;
+}
+
+.haz-underline--title em {
+  position: absolute;
+  left: 0;
+  bottom: -16px;
+  font-size: 0.7rem;
+  color: #4d4d4d;
+  font-style: normal;
+}
+
+@media print {
+  .haz-shell {
+    background: #fff;
+    padding: 0;
+  }
+
+  .haz-actions {
+    display: none !important;
+  }
+
+  .haz-doc {
+    box-shadow: none;
+    border: none;
+    max-width: none;
+    padding: 0;
+  }
+}

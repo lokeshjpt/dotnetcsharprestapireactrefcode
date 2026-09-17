@@ -1,0 +1,31 @@
+/* Processing-queue filter bar: fields and the Refresh button share one flex row and bottom-align,
+   so the button lines up with the input boxes (its label-less column would otherwise sit lower). */
+.queue-filters {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 12px 16px;
+  margin-bottom: 18px;
+}
+
+.queue-filters .search-field {
+  flex: 1 1 180px;
+  min-width: 150px;
+}
+
+.queue-filters__submit {
+  flex: 0 0 auto;
+}
+
+@media (max-width: 600px) {
+  .queue-filters .search-field {
+    flex-basis: 100%;
+  }
+  .queue-filters__submit {
+    width: 100%;
+  }
+  .queue-filters__submit .btn {
+    width: 100%;
+    justify-content: center;
+  }
+}

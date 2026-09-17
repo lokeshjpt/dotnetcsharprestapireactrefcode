@@ -1,0 +1,34 @@
+/* The <th> keeps its table's own padding/background; only the label becomes an inline button. */
+.sortable-th__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  background: none;
+  border: 0;
+  font: inherit;
+  font-weight: inherit;
+  color: inherit;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.sortable-th__btn:hover .sortable-th__label {
+  text-decoration: underline;
+}
+
+.sortable-th__btn:focus-visible {
+  outline: 2px solid var(--color-primary, #22507a);
+  outline-offset: 2px;
+}
+
+.sortable-th__icon {
+  font-size: 0.72em;
+  opacity: 0.5;
+}
+
+.sortable-th[aria-sort='ascending'] .sortable-th__icon,
+.sortable-th[aria-sort='descending'] .sortable-th__icon {
+  opacity: 1;
+}

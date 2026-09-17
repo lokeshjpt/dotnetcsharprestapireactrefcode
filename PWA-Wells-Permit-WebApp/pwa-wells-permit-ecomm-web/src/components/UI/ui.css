@@ -1,0 +1,33 @@
+/* UI field/button styles inherit from global.css (.form-row/.form-control/.btn). */
+
+.field-inline {
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+}
+
+.field-inline .form-control { width: auto; }
+
+.phone-inline {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.phone-inline .form-control { padding: 5px 6px; }
+
+.repeatable-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.repeatable-row .form-control { max-width: 320px; }
+.form-label .driller-verify-link {
+  margin-left: 8px;
+  font-weight: 400;
+  font-size: 0.85rem;
+  white-space: nowrap;
+}
+

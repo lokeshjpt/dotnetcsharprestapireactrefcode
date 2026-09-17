@@ -1,0 +1,399 @@
+/* ============================================================
+   ApprovalWizard.css — 5-step approval stepper (ecomm parity)
+   ============================================================ */
+
+.approval-wizard {
+  margin-top: 4px;
+  overflow: hidden;
+}
+
+.approval-wizard__toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  width: calc(100% + 40px);
+  margin: -20px -20px 0;
+  padding: 7px 14px;
+  background: #22507a;
+  color: var(--table-header-color);
+  border: none;
+  cursor: pointer;
+  text-align: left;
+}
+
+.approval-wizard__content {
+  padding-top: 16px;
+}
+
+.approval-wizard__toggle-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 700;
+  font-size: 0.98rem;
+}
+
+.approval-wizard__summary {
+  font-weight: 600;
+  font-size: 0.78rem;
+  padding: 2px 10px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.18);
+  white-space: nowrap;
+}
+
+.approval-wizard__summary--done {
+  background: #0e5c2f;
+}
+
+.approval-wizard__chevron {
+  font-size: 0.72rem;
+  flex-shrink: 0;
+}
+
+.wizard-steps {
+  margin-bottom: 20px;
+}
+
+.wizard-steps-list {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 2px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.wizard-step {
+  flex: 1 1 0;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 12px 8px 12px 26px;
+  background: #eef2f6;
+  color: var(--text-muted);
+  font-size: 12px;
+  white-space: nowrap;
+  cursor: pointer;
+  border: none;
+  text-align: left;
+  user-select: none;
+  clip-path: polygon(0 0, calc(100% - 16px) 0, 100% 50%, calc(100% - 16px) 100%, 0 100%, 16px 50%);
+}
+
+.wizard-step:focus-visible {
+  outline: 2px solid var(--btn-primary-bg);
+  outline-offset: -2px;
+}
+
+.wizard-step .step-label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.wizard-step:first-child {
+  padding-left: 10px;
+  clip-path: polygon(0 0, calc(100% - 16px) 0, 100% 50%, calc(100% - 16px) 100%, 0 100%);
+}
+
+.wizard-step:last-child {
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%, 16px 50%);
+}
+
+.wizard-step .step-num {
+  display: inline-flex;
+  width: 24px;
+  height: 24px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  background: #d5e0ea;
+  color: var(--btn-primary-bg);
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.wizard-step--active {
+  background: var(--btn-primary-bg);
+  color: #fff;
+}
+
+.wizard-step--active .step-num {
+  background: #fff;
+  color: var(--btn-primary-bg);
+}
+
+.wizard-step--complete {
+  background: #0e5c2f;
+  color: #fff;
+}
+
+.wizard-step--complete .step-num {
+  background: #fff;
+  color: #0e5c2f;
+}
+
+.wizard-actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 16px;
+  padding: 14px 0;
+}
+
+.wizard-actions__right {
+  display: flex;
+  gap: 12px;
+}
+
+/* ---- Step body ---- */
+.wizard-body {
+  padding-top: 4px;
+}
+
+.wizard-body__title {
+  margin: 0 0 4px;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.wizard-body__hint {
+  margin: 0 0 16px;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+.payment-summary {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px 40px;
+  margin: 4px 0 18px;
+  padding: 14px 18px;
+  background: #f6f9fc;
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius);
+}
+
+.payment-summary__row {
+  display: flex;
+  gap: 12px;
+  align-items: baseline;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+.payment-summary__label {
+  flex: 0 0 130px;
+  text-align: right;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.payment-summary__value {
+  flex: 1 1 auto;
+  min-width: 0;
+  color: var(--text-primary);
+  word-break: break-word;
+}
+
+@media (max-width: 640px) {
+  .payment-summary {
+    grid-template-columns: 1fr;
+  }
+}
+
+.condition-list {
+  list-style: none;
+  margin: 0;
+  padding: 4px;
+  display: grid;
+  gap: 8px;
+  /* The 16 standard conditions make the step very tall; cap the list and scroll it
+     internally so the special-conditions field and "Update Conditions" button stay in view. */
+  max-height: 300px;
+  overflow-y: auto;
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius);
+  background: #f7fafd;
+}
+
+.condition-list li {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  padding: 8px 10px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius);
+  background: #fbfdff;
+}
+
+.condition-list li input {
+  margin-top: 2px;
+}
+
+/* Per-work conditions panel: one block per work requesting a permit (legacy proc_work_conditions.jsp
+   edits conditions per work), each with its own status pill and Update Conditions / No Specials. */
+.work-conditions {
+  margin-top: 16px;
+  padding: 14px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius);
+  background: #fff;
+}
+
+.work-conditions + .work-conditions {
+  margin-top: 20px;
+}
+
+.work-conditions__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.work-conditions__label {
+  font-weight: 600;
+}
+
+.work-conditions__hint {
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+.work-conditions__actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.wizard-textarea {
+  width: 100%;
+  min-height: 90px;
+  padding: 8px 10px;
+  border: 1px solid var(--input-border);
+  border-radius: var(--border-radius);
+  font-family: var(--font-family);
+  font-size: var(--font-size-base);
+  resize: vertical;
+}
+
+.wizard-cond-banner {
+  margin: 0 0 14px;
+  padding: 10px 14px;
+  border-left: 4px solid #d97706;
+  background: #fffbeb;
+  color: #92400e;
+  border-radius: var(--border-radius);
+  font-size: 0.92rem;
+}
+
+.wizard-cond-status {
+  list-style: none;
+  margin: 12px 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.wizard-cond-status__row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius);
+  background: #fff;
+}
+
+.wizard-cond-status__label {
+  font-weight: 600;
+  flex: 1 1 auto;
+}
+
+.wizard-cond-status__done {
+  color: #166534;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.status-line {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 14px;
+  font-size: 0.92rem;
+}
+
+.status-line__badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.status-line__badge--ok {
+  background: #ecfdf5;
+  color: #0e5c2f;
+  border: 1px solid #a7f3d0;
+}
+
+.status-line__badge--pending {
+  background: #fff7ed;
+  color: #7a4200;
+  border: 1px solid #fed7aa;
+}
+
+.approval-result {
+  border: 2px solid #0e5c2f;
+  border-radius: var(--border-radius);
+  padding: 20px;
+  background: #f0fdf4;
+  margin-top: 8px;
+}
+
+.approval-result__receipt {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #0e5c2f;
+  letter-spacing: 0.04em;
+}
+
+@media (max-width: 900px) {
+  .wizard-steps-list {
+    overflow-x: auto;
+  }
+  .wizard-step {
+    min-width: 110px;
+    font-size: 11px;
+  }
+}
+
+/* Staff site-map upload (sitemap step) */
+.sitemap-upload {
+  margin: 14px 0 16px;
+  padding: 14px;
+  background: #f6f8fb;
+  border: 1px solid #dfe6ee;
+  border-radius: 6px;
+}
+.sitemap-upload__row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin: 6px 0 4px;
+}
+.sitemap-upload__row .form-control {
+  flex: 1 1 260px;
+  min-width: 220px;
+}

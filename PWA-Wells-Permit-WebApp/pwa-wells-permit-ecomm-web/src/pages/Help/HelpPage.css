@@ -1,0 +1,409 @@
+/* Let the help guide fill the full available width — in ecomm the whole viewport, and in intra the
+   space left over beside the (collapsible) sidebar, which the flex .staff-content already tracks.
+   Screenshots are capped near their captured resolution below so a wide viewport never up-scales
+   them into looking soft/blurry. */
+.help-page {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  scroll-padding-top: 16px;
+}
+
+.help-hero {
+  margin-bottom: 20px;
+}
+
+.help-hero__eyebrow {
+  margin: 0 0 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--color-primary);
+}
+
+/* ---- Searchable "jump to a topic" dropdown (replaces the old sidebar nav + filter box) ---- */
+.help-jump {
+  position: relative;
+  max-width: 560px;
+}
+
+.help-jump__field {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid var(--input-border);
+  border-radius: 6px;
+  padding: 9px 12px;
+  background: #fff;
+}
+
+.help-jump__field:focus-within {
+  border-color: var(--input-focus-border);
+  box-shadow: 0 0 0 3px rgba(102, 175, 233, 0.25);
+}
+
+.help-jump__icon {
+  width: 18px;
+  height: 18px;
+  color: var(--text-muted);
+  flex: 0 0 auto;
+}
+
+.help-jump__input {
+  flex: 1 1 auto;
+  border: none;
+  outline: none;
+  font-size: 0.95rem;
+  background: transparent;
+  color: var(--color-text);
+}
+
+.help-jump__caret {
+  width: 18px;
+  height: 18px;
+  color: var(--text-muted);
+  flex: 0 0 auto;
+  transition: transform 0.15s ease;
+}
+
+.help-jump__caret.is-open {
+  transform: rotate(180deg);
+}
+
+.help-jump__list {
+  position: absolute;
+  z-index: 30;
+  top: calc(100% + 4px);
+  left: 0;
+  right: 0;
+  margin: 0;
+  padding: 4px;
+  list-style: none;
+  background: #fff;
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.16);
+  max-height: 340px;
+  overflow-y: auto;
+}
+
+.help-jump__option {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 9px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.help-jump__option.is-active {
+  background: #f2f6fb;
+}
+
+.help-jump__option-title {
+  font-weight: 600;
+  color: var(--text-primary);
+  font-size: 0.92rem;
+}
+
+.help-jump__option-tagline {
+  color: var(--text-muted);
+  font-size: 0.8rem;
+}
+
+.help-jump__empty {
+  padding: 12px 10px;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+/* ---- Content (single, full-width column) ---- */
+.help-section {
+  margin-bottom: 20px;
+  scroll-margin-top: 16px;
+}
+
+.help-section__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  border-bottom: 2px solid var(--color-primary);
+  padding-bottom: 10px;
+  margin-bottom: 12px;
+}
+
+.help-section__title {
+  margin: 0;
+  font-size: 1.25rem;
+  color: var(--text-primary);
+}
+
+.help-section__tagline {
+  margin: 2px 0 0;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+.help-cta {
+  flex: 0 0 auto;
+  display: inline-block;
+  background: var(--btn-primary-bg);
+  color: #fff;
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 8px 14px;
+  border-radius: 4px;
+  white-space: nowrap;
+}
+
+.help-cta:hover {
+  background: var(--btn-primary-hover);
+}
+
+.help-section__intro {
+  margin: 0 0 16px;
+  color: var(--color-text);
+  line-height: 1.55;
+  max-width: 78ch;
+}
+
+.help-steps {
+  list-style: none;
+  counter-reset: help-step;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+/* Each step now stacks: a full-width screenshot on top, the description/instructions below it. */
+.help-step {
+  counter-increment: help-step;
+  padding-top: 24px;
+  border-top: 1px solid var(--color-border);
+}
+
+.help-steps > .help-step:first-child {
+  border-top: none;
+  padding-top: 0;
+}
+
+.help-step__figure {
+  margin: 0 0 14px;
+  max-width: 1400px;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 14px rgba(0, 0, 0, 0.10);
+  background: #fff;
+}
+
+.help-step__figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.help-step__title {
+  margin: 0 0 6px;
+  font-size: 1.05rem;
+  color: var(--text-primary);
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.help-step__title::before {
+  content: counter(help-step);
+  flex: 0 0 auto;
+  display: inline-grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--color-primary);
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.help-step__desc {
+  margin: 0 0 8px;
+  color: var(--text-muted);
+}
+
+.help-step__list {
+  margin: 0;
+  padding-left: 20px;
+  color: var(--color-text);
+  line-height: 1.55;
+}
+
+.help-step__list li {
+  margin-bottom: 5px;
+}
+
+.help-linkbtn {
+  border: none;
+  background: transparent;
+  color: var(--link-color);
+  cursor: pointer;
+  padding: 0;
+  font: inherit;
+  text-decoration: underline;
+}
+
+.help-foot {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  padding: 8px 4px 0;
+}
+
+@media (max-width: 640px) {
+  .help-jump {
+    max-width: none;
+  }
+}
+
+/* ---- Click-to-zoom screenshot button + full-screen lightbox ---- */
+.help-step__zoom {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: zoom-in;
+  position: relative;
+  line-height: 0;
+}
+
+.help-step__zoom img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.help-step__zoom-hint {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  padding: 5px 10px;
+  border-radius: 999px;
+  background: rgba(17, 24, 39, 0.78);
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 600;
+  line-height: 1;
+  opacity: 0;
+  transition: opacity 0.15s ease;
+  pointer-events: none;
+}
+
+.help-step__zoom:hover .help-step__zoom-hint,
+.help-step__zoom:focus-visible .help-step__zoom-hint {
+  opacity: 1;
+}
+
+.help-step__zoom:focus-visible {
+  outline: 3px solid var(--input-focus-border, #66afe9);
+  outline-offset: 2px;
+}
+
+.help-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3vmin;
+  background: rgba(15, 23, 42, 0.86);
+  cursor: zoom-out;
+  animation: help-lightbox-in 0.12s ease-out;
+}
+
+@keyframes help-lightbox-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.help-lightbox__img {
+  max-width: 96vw;
+  max-height: 92vh;
+  object-fit: contain;
+  border-radius: 6px;
+  box-shadow: 0 12px 48px rgba(0, 0, 0, 0.5);
+  cursor: default;
+}
+
+.help-lightbox__close {
+  position: fixed;
+  top: 16px;
+  right: 20px;
+  width: 44px;
+  height: 44px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.14);
+  color: #fff;
+  font-size: 1.8rem;
+  line-height: 1;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+}
+
+.help-lightbox__close:hover {
+  background: rgba(255, 255, 255, 0.28);
+}
+
+/* ---- Anchored deep-link targets: leave breathing room below the top edge on jump ---- */
+.help-section,
+.help-step[id] {
+  scroll-margin-top: 20px;
+}
+
+/* ---- Floating "back to top" button ---- */
+.help-to-top {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 40;
+  width: 46px;
+  height: 46px;
+  border: none;
+  border-radius: 50%;
+  background: var(--btn-primary-bg, #1f6fb2);
+  color: #fff;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.22);
+  transition: background 0.15s ease, transform 0.15s ease;
+}
+
+.help-to-top:hover {
+  background: var(--btn-primary-hover, #17578c);
+  transform: translateY(-2px);
+}
+
+.help-to-top:focus-visible {
+  outline: 3px solid var(--input-focus-border, #4c9aff);
+  outline-offset: 2px;
+}
+
+.help-to-top svg {
+  width: 24px;
+  height: 24px;
+}
+
+@media (max-width: 640px) {
+  .help-to-top {
+    right: 16px;
+    bottom: 16px;
+  }
+}

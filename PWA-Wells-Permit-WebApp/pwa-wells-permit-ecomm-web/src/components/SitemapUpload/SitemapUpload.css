@@ -1,0 +1,30 @@
+.sitemap-upload {
+  margin: 4px 0;
+}
+
+.sitemap-upload__row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+}
+
+.sitemap-upload .alert {
+  margin-top: 10px;
+}
+
+.sitemap-upload .captcha-notice {
+  margin-top: 0.75rem;
+  font-size: 0.75rem;
+  line-height: 1.4;
+  color: #4b5563;
+}
+
+.sitemap-upload .captcha-notice a {
+  color: #3f4650;
+  text-decoration: underline;
+}
+
+.sitemap-upload .captcha-notice a:hover {
+  color: #1f2937;
+}

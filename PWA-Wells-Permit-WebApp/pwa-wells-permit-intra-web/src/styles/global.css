@@ -1,0 +1,337 @@
+@import './variables.css';
+
+/* ---- Reset ---- */
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: var(--font-family);
+  font-size: var(--font-size-base);
+  color: var(--text-primary);
+  background: #f4f4f4;
+}
+
+a {
+  color: var(--link-color);
+  text-decoration: none;
+}
+a:hover { text-decoration: underline; }
+
+/* Links within body text must be distinguishable without color (WCAG 1.4.1) */
+p a { text-decoration: underline; }
+
+/* ---- Shared form utilities (Maps Tracker) ---- */
+.form-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-md);
+}
+
+.form-label {
+  min-width: 160px;
+  font-size: var(--label-font-size);
+  font-weight: 600;
+  color: var(--label-color);
+  padding-top: 6px;
+  flex-shrink: 0;
+}
+
+.mandatory { color: var(--mandatory-red); }
+.form-label .mandatory { margin-left: 2px; }
+
+.form-control {
+  width: 100%;
+  padding: 5px 8px;
+  border: 1px solid var(--input-border);
+  border-radius: var(--border-radius);
+  font-family: var(--font-family);
+  font-size: var(--font-size-base);
+  color: var(--text-primary);
+  background: #fff;
+  transition: border-color 0.15s;
+}
+.form-control:focus {
+  outline: none;
+  border-color: var(--input-focus-border);
+  box-shadow: 0 0 0 2px rgba(102, 175, 233, 0.3);
+}
+.form-control:disabled,
+.form-control[disabled] {
+  background: var(--input-disabled-bg);
+  cursor: not-allowed;
+  opacity: 1;
+}
+.form-control.is-invalid { border-color: var(--mandatory-red); }
+
+.form-col { flex: 1; min-width: 0; }
+.form-col-fixed-sm { width: 100px; flex-shrink: 0; }
+.form-col-fixed-md { width: 180px; flex-shrink: 0; }
+
+.upper-case { text-transform: uppercase; }
+
+.field-error {
+  color: var(--mandatory-red);
+  font-size: 12px;
+  margin-top: 3px;
+  display: block;
+}
+
+/* ---- Buttons ---- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  font-family: var(--font-family);
+  font-size: var(--font-size-base);
+  font-weight: 600;
+  border-radius: var(--border-radius);
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+  white-space: nowrap;
+  text-decoration: none;
+}
+.btn:disabled { opacity: 0.65; cursor: not-allowed; }
+
+.btn-primary {
+  background: var(--btn-primary-bg);
+  border-color: var(--btn-primary-border);
+  color: #fff;
+}
+.btn-primary:hover:not(:disabled) { background: var(--btn-primary-hover); }
+
+.btn-danger {
+  background: var(--btn-danger-bg);
+  border-color: var(--btn-danger-bg);
+  color: #fff;
+}
+.btn-danger:hover:not(:disabled) { background: var(--btn-danger-hover); }
+
+.btn-default {
+  background: var(--btn-default-bg);
+  border-color: var(--btn-default-border);
+  color: var(--text-primary);
+}
+.btn-default:hover:not(:disabled) { background: #e8e8e8; }
+
+.btn-link {
+  background: none;
+  border: none;
+  color: var(--link-color);
+  padding: 0;
+  font-size: var(--font-size-base);
+  cursor: pointer;
+  text-decoration: none;
+}
+.btn-link:hover { text-decoration: underline; }
+
+/* ---- Radio groups ---- */
+.radio-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-md);
+  padding-top: 4px;
+}
+.radio-label {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+  font-size: var(--font-size-base);
+}
+.radio-label input[type="radio"] { margin: 0; cursor: pointer; }
+
+/* ---- Tables (shared) ---- */
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--font-size-base);
+}
+.data-table th {
+  background: var(--table-header-bg);
+  color: var(--table-header-color);
+  padding: 8px 10px;
+  text-align: left;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.data-table td {
+  padding: 7px 10px;
+  border-bottom: 1px solid var(--table-border);
+  vertical-align: middle;
+}
+.data-table tr:nth-child(even) td { background: var(--table-stripe-bg); }
+.data-table tr:hover td { background: #e8f0fe; }
+
+/* Sticky column headers — keep table headers visible when a list is taller than its scroll
+   area. The header row pins to the top of the nearest scroll container (the main content pane,
+   or a bounded .table-scroll region). Header cells already have an opaque background. */
+.data-table thead th,
+table.simple-table thead th {
+  position: sticky;
+  top: 0;
+  z-index: 3;
+  box-shadow: inset 0 -1px 0 var(--table-border);
+}
+
+/* List results region. On desktop the region does not create its own scrollbar — long lists scroll
+   with the main content pane and the sticky table header pins to the top of that pane. On mobile it
+   becomes a self-contained scroll box (see the max-width: 900px block below) that owns both axes, so
+   the header stays sticky together with table-level horizontal and vertical scrollbars — this is the
+   Search Applications behaviour applied to every list page. */
+.table-scroll {
+  overflow: visible;
+}
+
+.text-muted { color: var(--text-muted); font-size: 12px; }
+.clearfix::after { content: ''; display: block; clear: both; }
+
+/* ============================================================
+   Legacy ecomm helper classes (retained so existing pages work)
+   ============================================================ */
+/* Fixed-viewport app shell: the header, sidebar and footer stay in place while only the main
+   content pane scrolls (see .staff-content / .sidebar__nav). */
+.app-shell {
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.page-shell {
+  width: 100%;
+  margin: 0;
+  padding: 10px 16px;
+}
+
+.panel {
+  background: var(--color-surface);
+  border: 1px solid rgb(234, 233, 233);
+  border-radius: 2px;
+  box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.05);
+  padding: 20px;
+}
+
+.page-title {
+  margin: 0 0 8px;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.page-subtitle {
+  margin: 0 0 20px;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+}
+
+.page-help-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0 0 16px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--link-color);
+  text-decoration: none;
+}
+
+.page-help-link:hover {
+  text-decoration: underline;
+}
+
+.page-help-link__icon {
+  width: 16px;
+  height: 16px;
+  flex: 0 0 auto;
+}
+
+.grid-two {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.grid-three {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.muted-text { color: var(--text-muted); }
+
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 10px;
+  border-radius: 10px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  background: #eaf1f8;
+  color: var(--color-primary);
+}
+
+.status-pill--approved {
+  background: #0e5c2f;
+  color: #fff;
+}
+
+table.simple-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+table.simple-table th,
+table.simple-table td {
+  padding: 10px;
+  border-bottom: 1px solid var(--table-border);
+  text-align: left;
+  vertical-align: top;
+}
+
+table.simple-table th {
+  background: #edf4fb;
+  font-weight: 700;
+}
+
+.alert {
+  border-radius: var(--border-radius);
+  padding: 12px 14px;
+  margin-bottom: 16px;
+}
+
+.alert-error {
+  background: #fff1f2;
+  color: #8b1a1a;
+  border: 1px solid #fecdd3;
+}
+
+.alert-success {
+  background: #ecfdf5;
+  color: #0e5c2f;
+  border: 1px solid #a7f3d0;
+}
+
+@media (max-width: 900px) {
+  .grid-two,
+  .grid-three {
+    grid-template-columns: 1fr;
+  }
+  .page-shell { padding: 10px 12px; }
+
+  /* Mobile: every list results table becomes a self-contained scroll box that owns BOTH axes —
+     the same behaviour as the Search Applications page. Capping the height turns .table-scroll into
+     the vertical scroll container as well as the horizontal one, so the sticky thead pins to the top
+     of this box while both a horizontal and a vertical scrollbar work at the table level (the table
+     scrolls, not the whole page). Short tables keep their natural height with no scrollbars. */
+  .table-scroll {
+    max-height: 70vh;
+    max-height: 70dvh;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+}

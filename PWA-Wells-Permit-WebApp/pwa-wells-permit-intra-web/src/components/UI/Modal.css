@@ -1,0 +1,217 @@
+/* ============================================================
+   Modal.css — overlay dialog for Application Detail "Edit" flows.
+   Matches the DetailSection navy header + clean body styling.
+   ============================================================ */
+
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 48px 16px;
+  overflow-y: auto;
+  z-index: 10001;
+}
+
+.modal-dialog {
+  background: #fff;
+  border-radius: var(--border-radius);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+  width: 100%;
+  max-width: 560px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  animation: modal-pop 0.12s ease-out;
+}
+
+.modal-dialog--sm { max-width: 440px; }
+.modal-dialog--md { max-width: 640px; }
+.modal-dialog--lg { max-width: 860px; }
+.modal-dialog--xl { max-width: 1180px; }
+
+@keyframes modal-pop {
+  from { transform: translateY(-8px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 9px 16px;
+  background: #22507a;
+  color: var(--table-header-color, #fff);
+}
+
+.modal-title {
+  font-weight: 700;
+  font-size: 0.98rem;
+}
+
+.modal-close {
+  background: transparent;
+  border: none;
+  color: inherit;
+  font-size: 1.4rem;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0 4px;
+}
+
+.modal-close:hover { opacity: 0.8; }
+
+.modal-body {
+  padding: 18px 20px;
+  max-height: 65vh;
+  overflow-y: auto;
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  padding: 12px 20px;
+  border-top: 1px solid var(--color-border);
+  background: #f7f9fb;
+}
+
+/* Two-column form grid inside a modal */
+.modal-form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 20px;
+  row-gap: 2px;
+}
+
+.modal-form-grid .modal-span-2 { grid-column: 1 / -1; }
+
+.add-work-fee {
+  font-weight: 700;
+  color: #22507a;
+  padding: 4px 0;
+}
+
+.add-work-verify-link {
+  font-size: 0.85rem;
+}
+
+.form-label .add-work-verify-link {
+  margin-left: 8px;
+  font-weight: 400;
+  white-space: nowrap;
+}
+
+.modal-subhead {
+  grid-column: 1 / -1;
+  margin: 10px 0 4px;
+  font-weight: 700;
+  font-size: 0.85rem;
+  color: #22507a;
+  border-bottom: 1px solid var(--color-border);
+  padding-bottom: 4px;
+}
+
+.modal-form-grid .form-row { display: block; }
+.modal-form-grid .form-label { width: auto; text-align: left; }
+
+body.modal-open { overflow: hidden; }
+
+.modal-spec-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+}
+
+.modal-spec-table th,
+.modal-spec-table td {
+  padding: 4px 6px;
+  text-align: left;
+}
+
+/* Match the navy header used by every other table in the app so the (now white) required
+   asterisk stays legible. */
+.modal-spec-table thead th {
+  background: var(--table-header-bg);
+  color: var(--table-header-color);
+}
+.modal-spec-table thead th .mandatory { color: inherit; }
+
+.modal-spec-table .form-control {
+  padding: 4px 6px;
+  font-size: 0.85rem;
+}
+
+.work-map-well {
+  margin-bottom: 14px;
+}
+
+.work-map-well__label {
+  font-weight: 600;
+  font-size: 0.85rem;
+  margin-bottom: 4px;
+  color: #22507a;
+}
+
+.payment-card-change {
+  margin-top: 14px;
+  padding: 14px;
+  border: 2px solid #22507a;
+  border-radius: var(--border-radius);
+  background: #f7f9fb;
+}
+
+@media (max-width: 620px) {
+  .modal-form-grid { grid-template-columns: 1fr; }
+}
+
+.ext-readonly-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px 24px;
+  margin-bottom: 16px;
+  font-size: 0.9rem;
+}
+.ext-readonly-grid .ext-label { font-weight: 600; }
+
+.haz-time-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.haz-time-row .form-label { margin: 0; }
+.haz-time-row .form-row { margin: 0; }
+.haz-time-row select.form-control { width: auto; }
+
+.haz-ppe-levels {
+  display: flex;
+  gap: 18px;
+  flex-wrap: wrap;
+  padding: 4px 0;
+}
+.haz-ppe-levels label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.9rem;
+}
+
+.haz-equip-table td:nth-child(2),
+.haz-equip-table td:nth-child(3),
+.haz-equip-table th:nth-child(2),
+.haz-equip-table th:nth-child(3) {
+  text-align: center;
+  width: 70px;
+}
+
+.haz-inline-row {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin-bottom: 6px;
+}
+.haz-inline-row .form-control { flex: 1; }

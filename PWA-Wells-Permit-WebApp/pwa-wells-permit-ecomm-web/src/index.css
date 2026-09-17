@@ -1,0 +1,14 @@
+@import './styles/global.css';
+
+html, body, #root {
+  min-height: 100%;
+}
+
+/*
+ * The invisible reCAPTCHA badge is hidden per Google's guidelines, which is permitted only because
+ * the required "protected by reCAPTCHA / Privacy Policy / Terms of Service" disclosure is shown next
+ * to every captcha-gated control (see .captcha-notice on the Apply, Track and Sitemap-upload forms).
+ */
+.grecaptcha-badge {
+  visibility: hidden;
+}

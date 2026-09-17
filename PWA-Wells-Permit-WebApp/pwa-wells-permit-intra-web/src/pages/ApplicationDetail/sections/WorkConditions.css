@@ -1,0 +1,101 @@
+/* ============================================================
+   WorkConditions.css — the "Works Requesting Permit — Apply / Edit
+   Conditions" table (parity with the legacy proc_work_list.jsp) and
+   the per-work conditions modal (parity with proc_work_conditions.jsp).
+   ============================================================ */
+
+.wc-pending-banner {
+  margin: 0 0 14px;
+  padding: 10px 14px;
+  border: 1px solid #fed7aa;
+  background: #fff7ed;
+  color: #b45309;
+  border-radius: var(--border-radius);
+  font-size: 0.9rem;
+}
+
+.wc-table-wrap {
+  overflow-x: auto;
+}
+
+.wc-table {
+  width: 100%;
+}
+
+.wc-table td {
+  vertical-align: top;
+}
+
+.wc-table__action {
+  text-align: right;
+  white-space: nowrap;
+}
+
+/* ---- Per-work conditions modal ---- */
+.wc-modal__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 6px;
+}
+
+.wc-modal__title {
+  font-weight: 700;
+  color: #22507a;
+}
+
+.wc-modal__welluse {
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.wc-modal__hint {
+  margin: 0 0 12px;
+  color: #555;
+  font-size: 0.9rem;
+}
+
+.wc-modal__empty {
+  margin: 0 0 14px;
+  padding: 10px 12px;
+  border: 1px dashed var(--color-border);
+  border-radius: var(--border-radius);
+  background: #f8fafc;
+  color: #555;
+  font-size: 0.9rem;
+}
+
+.wc-cond-list {
+  list-style: none;
+  margin: 0 0 14px;
+  padding: 0;
+  display: grid;
+  gap: 8px;
+  /* The full set of work-type conditions can be tall — cap and scroll. */
+  max-height: 42vh;
+  overflow-y: auto;
+}
+
+.wc-cond-list li {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  padding: 8px 10px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius);
+}
+
+.wc-cond-list li input {
+  margin-top: 3px;
+}
+
+.wc-special {
+  margin-top: 4px;
+}
+
+.wc-special__area {
+  width: 100%;
+  min-height: 90px;
+  resize: vertical;
+}

@@ -1,0 +1,165 @@
+.detail-header {
+  position: relative;
+  margin-bottom: 16px;
+  background: #e8f0f8;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 12px 24px;
+}
+
+.detail-header__actions {
+  order: 2;
+  margin-left: auto;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.detail-header__actions .btn {
+  padding: 3px 12px;
+  font-size: 0.8rem;
+}
+
+.detail-header__grid {
+  order: 1;
+  flex: 1 1 420px;
+  min-width: 0;
+  display: grid;
+  grid-template-columns: 1.3fr 1fr 0.9fr;
+  gap: 16px 32px;
+}
+
+.detail-header__col {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.detail-header__row {
+  display: flex;
+  gap: 8px;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+.detail-header__label {
+  font-weight: 700;
+  color: var(--text-primary);
+  white-space: nowrap;
+}
+
+.detail-header__value {
+  color: var(--text-primary);
+}
+
+/* Recalculated "Adjusted Pay Total" that no longer matches the originally authorised amount, and the
+   inline "Fine included" call-out — parity with the red figure on the legacy search_detail.jsp. */
+.detail-header__value--adjusted,
+.amount-adjusted {
+  color: #c0281f;
+  font-weight: 600;
+}
+
+.detail-header__fine,
+.fine-note {
+  margin-left: 4px;
+  color: var(--text-secondary, #6b7280);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 0.85em;
+}
+
+.detail-section-heading {
+  margin: 18px 0 8px;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.application-detail-page > .approval-wizard {
+  margin-bottom: 18px;
+}
+
+.detail-col--full {
+  gap: 6px;
+}
+
+.specs-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin: 4px 0 10px;
+  padding: 0;
+  background: none;
+  border: none;
+  color: var(--color-primary, #0b5cab);
+  font-family: inherit;
+  font-size: 0.92rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.specs-toggle:hover {
+  text-decoration: underline;
+}
+
+.specs-toggle__chevron {
+  font-size: 0.7rem;
+}
+
+.specs-toggle--icon {
+  margin: 0;
+  justify-content: center;
+}
+
+.works-table__expander {
+  width: 34px;
+  text-align: center;
+}
+
+.works-table__actions-col {
+  text-align: right;
+}
+
+.works-table__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  justify-content: flex-end;
+}
+
+.works-table__actions .btn {
+  padding: 4px 10px;
+  font-size: 0.82rem;
+}
+
+.works-table__detail > td {
+  background: var(--surface-muted, #f6f8fb);
+  padding: 10px 14px;
+}
+
+.works-table__detail:hover > td {
+  background: var(--surface-muted, #f6f8fb);
+}
+
+.works-specs__title {
+  font-weight: 600;
+  margin-bottom: 6px;
+  font-size: 0.9rem;
+  color: var(--text-secondary, #444);
+}
+
+@media (max-width: 900px) {
+  .detail-header__grid {
+    grid-template-columns: 1fr;
+    flex-basis: 100%;
+  }
+  .detail-header__actions {
+    order: 0;
+    margin-left: 0;
+    width: 100%;
+    justify-content: flex-start;
+  }
+}

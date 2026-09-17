@@ -1,0 +1,58 @@
+{
+  "name": "pwa-permits-intra",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "@azure/msal-browser": "^4.30.0",
+    "@azure/msal-react": "^3.0.29",
+    "@reduxjs/toolkit": "^2.8.2",
+    "axios": "^1.10.0",
+    "lucide-react": "^0.515.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-redux": "^9.2.0",
+    "react-router-dom": "^7.6.2",
+    "react-scripts": "5.0.1"
+  },
+  "scripts": {
+    "start": "set PORT=3003 && react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "build:development": "env-cmd -f .env.development react-scripts build",
+    "build:test": "env-cmd -f .env.test react-scripts build",
+    "build:uat": "env-cmd -f .env.uat react-scripts build",
+    "build:production": "env-cmd -f .env.production react-scripts build",
+    "capture:help": "set CAPTURE=1 && playwright test capture-help.spec.js",
+    "test:e2e": "playwright test",
+    "test:regression": "node e2e/run.js"
+  },
+  "jest": {
+    "testMatch": [
+      "<rootDir>/src/**/__tests__/**/*.{js,jsx,ts,tsx}",
+      "<rootDir>/src/!(config)/**/*.{spec,test}.{js,jsx,ts,tsx}"
+    ]
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.62.1",
+    "env-cmd": "^11.0.0"
+  }
+}

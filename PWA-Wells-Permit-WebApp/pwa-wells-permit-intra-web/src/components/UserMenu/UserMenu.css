@@ -1,0 +1,138 @@
+.user-menu {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.user-menu__trigger {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(0, 0, 0, 0.16);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: #fff;
+  padding: 4px 10px 4px 4px;
+  border-radius: 999px;
+  cursor: pointer;
+  font: inherit;
+  line-height: 1;
+  transition: background 0.15s ease;
+}
+
+.user-menu__trigger:hover,
+.user-menu__trigger:focus-visible {
+  background: rgba(0, 0, 0, 0.26);
+  outline: none;
+}
+
+.user-menu__avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: #fff;
+  color: #22507a;
+  font-weight: 700;
+  font-size: 0.8rem;
+  flex-shrink: 0;
+}
+
+.user-menu__avatar--lg {
+  width: 40px;
+  height: 40px;
+  font-size: 1rem;
+}
+
+.user-menu__name {
+  font-weight: 600;
+  font-size: 0.9rem;
+  max-width: 140px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.user-menu__chevron {
+  transition: transform 0.15s ease;
+}
+
+.user-menu__chevron.is-open {
+  transform: rotate(180deg);
+}
+
+.user-menu__dropdown {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  min-width: 250px;
+  background: #fff;
+  color: #1f2933;
+  border: 1px solid #d9dee5;
+  border-radius: 8px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
+  padding: 6px;
+  z-index: 1000;
+}
+
+.user-menu__identity {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+}
+
+.user-menu__details {
+  min-width: 0;
+}
+
+.user-menu__fullname {
+  font-weight: 700;
+  font-size: 0.95rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.user-menu__email {
+  font-size: 0.82rem;
+  color: #5a6672;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.user-menu__divider {
+  height: 1px;
+  background: #eceff3;
+  margin: 4px 0;
+}
+
+.user-menu__action {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  background: none;
+  border: none;
+  color: #1f2933;
+  font: inherit;
+  font-size: 0.9rem;
+  text-align: left;
+  padding: 10px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.user-menu__action:hover,
+.user-menu__action:focus-visible {
+  background: #f2f5f9;
+  outline: none;
+}
+
+@media (max-width: 900px) {
+  .user-menu__name {
+    display: none;
+  }
+}

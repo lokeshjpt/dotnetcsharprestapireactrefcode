@@ -1,0 +1,141 @@
+name: Manual Deploy .NET Wells Permit Web API
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: "Target environment"
+        required: true
+        default: dev
+        type: choice
+        options:
+          - dev
+          - test
+          - uat
+env:
+      APP_ENV: ${{ inputs.environment || 'dev' }}
+      APP_NAME: "WellPermitApi"
+      WEBAPI_PROJ_PATH: pwa-wells-permit-api/src/PWA.PermitsApi.WebApi/PWA.PermitsApi.WebApi
+      WEBAPI_PROJ_FILE_PATH: pwa-wells-permit-api/src/PWA.PermitsApi.WebApi/PWA.PermitsApi.WebApi.csproj
+      
+      TARGET_DEV_DEPLOY_FOLDER_PATH: \\user.root.acgov.org\itd\ITD_IIS_Content_Dev_inter\pwawellpermitsapi
+      TARGET_TEST_DEPLOY_FOLDER_PATH: \\user.root.acgov.org\itd\ITD_IIS_Content_test_inter\pwawellpermitsapi
+      TARGET_UAT_DEPLOY_FOLDER_PATH: \\user.root.acgov.org\itd\ITD_IIS_Content_uat_inter\pwawellpermitsapi
+      WEBAPI_PUBLISH_PROFILE_PATH: pwa-wells-permit-api/src/PWA.PermitsApi.WebApi/bin/Release/net8.0
+jobs:
+   build:
+    runs-on: [self-hosted,Windows,DigitalAppsDotNet]
+    environment: dev
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: '8.0.x'
+
+    - name: Resolve project path
+      shell: powershell
+      run: |
+        $path = "pwa-wells-permit-api/src/PWA.PermitsApi.WebApi/PWA.PermitsApi.WebApi.csproj"
+        "WEBAPI_PROJ_FILE_PATH=$path" | Out-File -FilePath $env:GITHUB_ENV -Append
+        
+    - name: Restore dependencies
+      run: dotnet restore $env:WEBAPI_PROJ_FILE_PATH
+
+    - name: Build
+      run: dotnet build  $env:WEBAPI_PROJ_FILE_PATH --configuration Release --no-restore
+
+    - name: Publish
+      run: dotnet publish  $env:WEBAPI_PROJ_FILE_PATH -c Release -o publish
+
+
+    - name: Upload artifact
+      uses: actions/upload-artifact@v4
+      with:
+          name: app-mtaapi-publish
+          path: publish/
+
+   deploy-dev:
+    runs-on: [self-hosted,Windows,DigitalAppsDotNet]
+    needs: build
+    environment: dev
+    steps:    
+    - name: Deploy using reusable action
+      uses: ./.github/actions/apideploy
+      with:
+        environment: dev
+        deploy-path: ${{env.TARGET_DEV_DEPLOY_FOLDER_PATH}}
+        webapi-file-path: ${{env.WEBAPI_PROJ_PATH}}
+ 
+   deploy-test:
+    runs-on: [self-hosted,Windows,DigitalAppsDotNet]
+    needs: [build,deploy-dev]
+    if: ${{ inputs.environment == 'test' || inputs.environment == 'uat' }}
+    environment: test
+    steps:    
+    - name: Deploy using reusable action
+      uses: ./.github/actions/apideploy
+      with:
+        environment: test
+        deploy-path: ${{env.TARGET_TEST_DEPLOY_FOLDER_PATH}}
+        webapi-file-path: ${{env.WEBAPI_PROJ_PATH}}
+ 
+
+   deploy-uat:
+    runs-on: [self-hosted,Windows,DigitalAppsDotNet]
+    needs: [build,deploy-dev,deploy-test]
+    if: ${{ inputs.environment == 'uat' }}
+    environment: uat
+    steps:    
+    - name: Deploy using reusable action
+      uses: ./.github/actions/apideploy
+      with:
+        environment: uat
+        deploy-path: ${{env.TARGET_UAT_DEPLOY_FOLDER_PATH}}
+        webapi-file-path: ${{env.WEBAPI_PROJ_PATH}}
+         
+   create-tag:
+    runs-on: [self-hosted,Windows,DigitalAppsDotNet]   
+    needs: [build, deploy-dev,deploy-test,deploy-uat]
+    if: ${{ always() && needs.build.result == 'success' }}
+    steps:
+    - uses: actions/checkout@v4
+      with:
+         fetch-depth: 0    
+    - name: Create Git tag
+      shell: powershell
+      run: |
+          # Get branch name (e.g. refs/heads/r/1.0.0.0)
+          $ref = $env:GITHUB_REF
+          Write-Host "Git ref: $ref"
+      
+          if ($ref -notmatch "refs/heads/r/(.+)") {
+            Write-Error "Not a release branch. Expected r/<version>"
+            exit 1
+          }
+      
+          # Extract version from branch
+          $version = $Matches[1]
+          Write-Host "Release version: $version"
+      
+          # Get environment (prefer workflow input, fallback to APP_ENV)
+          $envName = "$env:APP_ENV"
+          if (-not $envName) {
+            $envName = $env:APP_ENV
+          }
+      
+          if (-not $envName) {
+            Write-Error "Environment not provided"
+            exit 1
+          }
+      
+          # Build tag
+          $tagName = "v_${{env.APP_NAME}}-r_$version-$envName-${{ github.run_number }}"
+          Write-Host "Creating tag: $tagName"
+      
+          # Create annotated tag
+          git tag -a $tagName -m "Release $tagName"
+      
+          # Push tag
+          git push origin $tagName

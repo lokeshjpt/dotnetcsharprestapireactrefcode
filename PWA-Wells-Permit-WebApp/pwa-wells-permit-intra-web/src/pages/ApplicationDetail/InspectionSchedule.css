@@ -1,0 +1,238 @@
+/* ============================================================
+   InspectionSchedule.css — Java inspection_detail.jsp parity
+   (availability calendar + add-visit form + scheduled list)
+   ============================================================ */
+
+.insp-schedule {
+  margin-top: 8px;
+}
+
+.insp-schedule__title {
+  margin: 4px 0 12px;
+  font-size: 0.95rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  color: var(--text-primary);
+}
+
+/* ---- Calendar ---- */
+.insp-cal {
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius);
+  padding: 12px;
+  background: #f9fbfd;
+}
+
+.insp-cal__nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.insp-cal__month {
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.insp-cal__grid {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.insp-cal__grid th {
+  padding: 6px 0;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-muted);
+  text-align: center;
+}
+
+.insp-cal__cell {
+  height: 58px;
+  vertical-align: top;
+  border: 1px solid #e2e8f0;
+  padding: 4px 6px;
+  background: #fff;
+  text-align: left;
+}
+
+.insp-cal__cell--blank {
+  background: #f1f5f9;
+  border-color: #eef2f6;
+}
+
+.insp-cal__day {
+  display: block;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.insp-cal__slots {
+  display: block;
+  margin-top: 6px;
+  font-size: 0.7rem;
+  font-weight: 600;
+}
+
+.insp-cal__cell--open {
+  background: #ecfdf5;
+  cursor: pointer;
+}
+
+.insp-cal__cell--open .insp-cal__slots {
+  color: #157347;
+}
+
+.insp-cal__cell--open:hover {
+  background: #d1fae5;
+}
+
+.insp-cal__cell--full {
+  background: #fef2f2;
+}
+
+.insp-cal__cell--full .insp-cal__slots {
+  color: #8b1a1a;
+}
+
+.insp-cal__cell--past {
+  background: #f8fafc;
+  color: var(--text-muted);
+}
+
+.insp-cal__cell--past .insp-cal__day {
+  color: #556070;
+}
+
+.insp-cal__cell--selected {
+  outline: 2px solid var(--btn-primary-bg, #22507a);
+  outline-offset: -2px;
+  background: #dbeafe;
+}
+
+/* Bookable days carry their interaction on an inner <button> so the <td> keeps its
+   native table-cell role (a row of all-bookable days must still own cells, not buttons). */
+.insp-cal__cellbtn {
+  display: block;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.insp-cal__cellbtn:focus-visible {
+  outline: 2px solid var(--btn-primary-bg, #22507a);
+  outline-offset: -2px;
+  border-radius: 2px;
+}
+
+.insp-cal__legend {
+  display: flex;
+  gap: 18px;
+  margin-top: 10px;
+  font-size: 0.74rem;
+  color: var(--text-muted);
+}
+
+.insp-cal__legend .swatch {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: 3px;
+  margin-right: 5px;
+  vertical-align: -1px;
+  border: 1px solid #cbd5e1;
+}
+
+.swatch--open { background: #ecfdf5; border-color: #a7f3d0; }
+.swatch--full { background: #fef2f2; border-color: #fecaca; }
+.swatch--past { background: #f8fafc; }
+
+/* ---- Add a Site Visit ---- */
+.insp-add {
+  margin: 16px 0;
+  padding: 12px 14px;
+  background: #f6f8fb;
+  border: 1px solid #dfe6ee;
+  border-radius: 6px;
+}
+
+.insp-add__label {
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: var(--text-primary);
+}
+
+.insp-add__row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  align-items: flex-end;
+}
+
+.insp-field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1 1 180px;
+  min-width: 160px;
+}
+
+.insp-field > span {
+  font-size: 0.76rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.insp-field--action {
+  flex: 0 0 auto;
+  justify-content: flex-end;
+}
+
+/* ---- Scheduled list ---- */
+.insp-list {
+  margin-top: 8px;
+}
+
+.insp-list th,
+.insp-list td {
+  vertical-align: middle;
+}
+
+.insp-list__datetime {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: nowrap;
+}
+
+.insp-list__date {
+  white-space: nowrap;
+}
+
+.insp-list__time {
+  display: inline-block;
+  width: auto;
+  min-width: 130px;
+  margin-left: 0;
+}
+
+.insp-list__actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: nowrap;
+  white-space: nowrap;
+}

@@ -1,0 +1,52 @@
+/* Shared layout for the history permit / well detail + edit pages. */
+
+.history-page__header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.history-page__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.history-back-link {
+  display: inline-block;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+}
+
+/* Two-column responsive grid for the edit form's InputField / SelectField rows. */
+.history-edit__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.25rem 2rem;
+}
+
+.history-edit__grid .modal-subhead,
+.history-edit__grid .history-edit__full {
+  grid-column: 1 / -1;
+}
+
+.modal-subhead {
+  font-weight: 700;
+  margin: 0.75rem 0 0.25rem;
+  color: var(--pwa-navy, #0b2e59);
+}
+
+.history-edit__form-actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+@media (max-width: 720px) {
+  .history-edit__grid {
+    grid-template-columns: 1fr;
+  }
+}
